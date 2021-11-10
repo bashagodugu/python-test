@@ -32,5 +32,12 @@ steps:
 
 - script: |
     pip install pytest pytest-azurepipelines
-    pytest
+    cd hello_app
+    pytest --junitxml=../reports/hello_app.xml
   displayName: 'pytest'
+
+- task: PublishTestResults@2
+    inputs:
+      testResultsFiles: 'reports/hello_app.xml'
+      testRunTitle: '$(Agent.OS) - $(Build.BuildNumber)[$(Agent.JobName)] - Python $(python.version)'
+    condition: succeededOrFailed()
