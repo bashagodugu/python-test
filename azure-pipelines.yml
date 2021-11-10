@@ -37,7 +37,7 @@ steps:
   displayName: 'pytest'
 
 - task: PublishTestResults@2
-    inputs:
-      testResultsFiles: 'reports/hello_app.xml'
-      testRunTitle: '$(Agent.OS) - $(Build.BuildNumber)[$(Agent.JobName)] - Python $(python.version)'
-    condition: succeededOrFailed()
+  inputs:
+    testResultsFiles: 'reports/hello_app.xml'
+    testRunTitle: '$(Agent.OS) - $(Build.BuildNumber)[$(Agent.JobName)] - Python $(python.version)'
+  condition: succeededOrFailed()
